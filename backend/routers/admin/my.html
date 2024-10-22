@@ -1,0 +1,47 @@
+<?php
+
+$dsn = ‘mysql:host=localhost;dbname=account’; $uname = ‘root’;
+
+$pwd = ”;
+
+$db = new PDO($dsn,$uname,$pwd); $vcity = $_POST[‘city’];
+
+$query = “select * from vendor where vcity = ‘$vcity'”;
+
+//echo “<br> Query : $query <br>”;
+
+$result = $db->query($query);
+
+$rows = $result->fetchall();
+
+foreach($rows as $row)
+
+{
+
+$vid = $row[‘vid’];
+
+$vname = $row[‘vname’];
+
+$vaddress = $row[‘vaddress’];
+
+$vcity = $row[‘vcity’];
+
+$vmobile = $row[‘vmobile’];
+
+echo “<br>”;
+
+echo “<br> Vendor ID : $vid”;
+
+echo “<br> Vendor Name: $vname”;
+
+echo “<br> Vendor Address: $vaddress”;
+
+echo “<br> Vendor City : $vcity”;
+
+echo “<br> Vendor Mobile : $vmobile”;
+
+}
+
+$result->closeCursor();
+
+?>

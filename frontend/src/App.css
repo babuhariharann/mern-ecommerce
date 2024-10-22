@@ -1,0 +1,80 @@
+p {
+  margin-bottom: 0px !important;
+}
+
+form input {
+  background: none;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+  height: 45px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 10px;
+  height: 45px;
+  width: 100%;
+
+}
+
+.password input {
+  display: flex;
+  flex: 1;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.password button {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.sidebar-admin {
+  width: 200px;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: 20px;
+  scrollbar-width: none;
+  border-right: 1px solid rgba(128, 128, 128, 0.515);
+}
+
+ul {
+  padding: 0px !important;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul li a.active {
+  color: red !important;
+}
+
+.custom_textarea {
+  background: none;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+  min-height: 100px;
+  width: 100%;
+  padding: 10px 15px;
+}

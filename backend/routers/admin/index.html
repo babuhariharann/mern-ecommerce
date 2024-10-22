@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Transformation with XSLT</title>
+</head>
+<body>
+
+    <h1>Bookstore</h1>
+    <!-- The transformed content will be inserted here -->
+    <div id="bookList"></div>
+
+    <script>
+        // Function to load XML or XSLT file
+        function loadXMLDoc(filename) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", filename, false);
+            xhttp.send();
+            return xhttp.responseXML;
+        }
+
+        // Load the XML and XSLT files
+        var xml = loadXMLDoc("books.xml");
+        var xsl = loadXMLDoc("books.xsl");
+
+        // Check if the browser supports XSLT transformation
+        if (window.ActiveXObject || "ActiveXObject" in window) { // For Internet Explorer
+            var ex = xml.transformNode(xsl);
+            document.getElementById("bookList").innerHTML = ex;
+        } else if (document.implementation && document.implementation.createDocument) { // For modern browsers
+            var xsltProcessor = new XSLTProcessor();
+            xsltProcessor.importStylesheet(xsl);
+            var resultDocument = xsltProcessor.transformToFragment(xml, document);
+            document.getElementById("bookList").appendChild(resultDocument);
+        } else {
+            document.getElementById("bookList").innerHTML = "Your browser does not support XSLT!";
+        }
+    </script>
+
+</body>
+</html>

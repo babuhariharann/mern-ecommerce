@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client-Side Validation Form</title>
+    <script>
+        
+        function validateForm() {
+            
+            const namePattern = /^[a-zA-Z ]+$/;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const phonePattern = /^[0-9]{10}$/;  // For 10 digit phone numbers
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters, 1 letter, and 1 number
+
+           
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+
+        
+            if (!namePattern.test(name)) {
+                alert("Name must only contain letters and spaces.");
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("Invalid email format.");
+                return false;
+            }
+
+            if (!phonePattern.test(phone)) {
+                alert("Phone number must be 10 digits.");
+                return false;
+            }
+
+            if (!passwordPattern.test(password)) {
+                alert("Password must be at least 8 characters long and contain at least one letter and one number.");
+                return false;
+            }
+
+            alert("Form is valid!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Client-Side Form Validation</h2>
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
