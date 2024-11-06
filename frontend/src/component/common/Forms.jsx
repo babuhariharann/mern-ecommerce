@@ -6,12 +6,22 @@ import Select from 'react-select'
 
 const Forms = ({ formControls, formData, setFormData, buttonText, onSubmit, isLoading }) => {
 
+  console.log('formdatga', formData)
+
+
+  const selectValued = { value: "men", label: "Men" }
 
 
   const [passwordType, setPasswordType] = useState('password')
+  const [selectValue, setSelectValue] = useState(null)
 
   const handlePasswordType = () => {
     setPasswordType(passwordType == 'password' ? "text" : "password")
+  }
+
+  const handleSelectChange = (e) => {
+    console.log('selectvalkue', e)
+    setSelectValue(e.value)
   }
 
   const renderByComponentType = (getControlItem) => {
@@ -19,6 +29,8 @@ const Forms = ({ formControls, formData, setFormData, buttonText, onSubmit, isLo
     let element = null
     let value = formData[getControlItem.name] || ''
 
+
+    console.log('valuees', value)
 
     switch (getControlItem.componentType) {
       case "input":
@@ -66,9 +78,11 @@ const Forms = ({ formControls, formData, setFormData, buttonText, onSubmit, isLo
         element = (
           <Select
             options={getControlItem.options}
-            // value={value}
+            // value={selectValued}
+            value={getControlItem.options.find((item) => item.value === formData[getControlItem.name])}
             placeholder={getControlItem.placeholder}
             onChange={(e) => setFormData({ ...formData, [getControlItem.name]: e.value })}
+          // onChange={(e) => handleSelectChange(e)}
           />
         )
         break

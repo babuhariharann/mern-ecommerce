@@ -94,11 +94,28 @@ export const cloudinaryImageUploadAPI = async (file) => {
 
 /** get product */
 
+export const getProductAPI = async () => {
+  try {
+
+    const response = await axios.get(`${localHostName}/api/admin/products/get-products`)
+
+    return response?.data
+
+  } catch (error) {
+    return {
+      success: false,
+      message: error?.response?.data?.message ? error?.response?.data?.message : error?.message
+    }
+  }
+}
+
 /** add product */
 
 export const addProductAPI = async (formData) => {
 
   const { image, title, description, category, brand, price, salePrice, totalStock } = formData
+
+
 
   console.log('imagessssssssss', formData)
   try {

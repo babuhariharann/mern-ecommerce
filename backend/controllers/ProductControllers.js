@@ -56,6 +56,8 @@ export const addNewProduct = async (req, res, next) => {
   console.log('addnewproduct', req.body)
   const { image, title, description, category, brand, price, salePrice, totalStock } = req.body
 
+  console.log('imageee', image)
+
   // Fields to validate
   const requiredFields = { image, title, description, category, brand, price, salePrice, totalStock };
 

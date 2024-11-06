@@ -9,12 +9,13 @@ const ImageUpload = ({ imageFile, setImageFile, uploadImageUrl, setUploadImageUr
   /** image upload function */
 
   const handleImageUpload = (e) => {
-    console.log('uploadimage', e.target.files?.[0])
     const selectedImage = e.target.files?.[0]
     if (selectedImage) {
       setImageFile(selectedImage)
     }
   }
+
+
 
   /** image drag function */
 
@@ -46,18 +47,18 @@ const ImageUpload = ({ imageFile, setImageFile, uploadImageUrl, setUploadImageUr
   const handleCloudinaryUpload = async () => {
     try {
       const data = new FormData();
-      if (!imageFile) return
-      console.log('imagefile', imageFile)
-      setImageUploading(true)
-      data.append("image", imageFile)
-      console.log('datas', data)
-      const cloudinaryUploadResponse = await cloudinaryImageUploadAPI(data)
-      console.log('clod', cloudinaryUploadResponse)
-      if (cloudinaryUploadResponse?.success) {
+      if (!imageFile) {
+        return
+      } else {
+        setImageUploading(true)
+        data.append("image", imageFile)
+        const cloudinaryUploadResponse = await cloudinaryImageUploadAPI(data)
+        if (cloudinaryUploadResponse?.success) {
+          setImageUploading(false)
+          setUploadImageUrl(cloudinaryUploadResponse?.result?.url)
+        }
         setImageUploading(false)
-        setUploadImageUrl(cloudinaryUploadResponse?.result?.url)
       }
-      setImageUploading(false)
     } catch (error) {
       console.log(error)
       setImageUploading(false)
@@ -65,7 +66,7 @@ const ImageUpload = ({ imageFile, setImageFile, uploadImageUrl, setUploadImageUr
   }
 
 
-  console.log('imageupload url', uploadImageUrl, imageUploading)
+
 
   useEffect(() => {
     handleCloudinaryUpload()
